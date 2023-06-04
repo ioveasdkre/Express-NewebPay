@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>籃新金流練習</title>
+
+    <Script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></Script>
+  </head>
+  <body>
+    <div id="app">
+      <form action="https://ccore.newebpay.com/MPG/mpg_gateway" method="post">
+        <input type="text" name="MerchantID" :value="order.MerchantID" />
+        <input type="hidden" name="TradeSha" :value="order.shaEncrypted" />
+        <input type="hidden" name="TradeInfo" :value="order.aesEncrypted" />
+        <input type="text" name="TimeStamp" :value="order.order.TimeStamp" />
+        <input type="text" name="Version" :value="order.Version" />
+        <input type="text" name="MerchantOrderNo" :value="order.order.MerchantOrderNo" />
+        <input type="text" name="Amt" :value="order.order.Amt" />
+        <input type="email" name="Email" :value="order.order.Email" />
+        <button type="submit">確認支付</button>
+      </form>
+    </div>
+    <script type="module">
+      import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js';
+
+      const app = {
+        data() {
+          return {
+            orderId: '',
+            order: {
+              order: {},
+            },
+          };
+        },
+        async mounted() {
+          const searchUrl = new URLSearchParams(window.location.search);
+          this.orderId = searchUrl.get('order');
+
+          const url = `/api/home/order/${this.orderId}`;
+          const res = await axios.get(url);
+          console.log(res);
+          this.order = res.data.data;
+        },
+      };
+
+      createApp(app).mount('#app');
+    </script>
+  </body>
+</html>

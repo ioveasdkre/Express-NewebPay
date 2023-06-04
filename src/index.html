@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Users</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users.css" />
+  </head>
+  <body>
+    <form action="https://ccore.newebpay.com/MPG/mpg_gateway" method="post">
+      <input type="text" name="MerchantID" value="商店 ID" />
+      <input type="hidden" name="TradeSha" value="使用SHA256壓馬過後並轉大寫" />
+      <input type="hidden" name="TradeInfo" value="加密後字串(TradeInfo)" />
+      <input type="text" name="TimeStamp" value="1684147936" />
+      <input type="text" name="Version" value="1.5" />
+      <input type="text" name="MerchantOrderNo" value="1684147936" />
+      <input type="text" name="Amt" value="44" />
+      <input type="email" name="Email" value="test@gmail.com" />
+      <button type="submit">確認支付</button>
+    </form>
+  </body>
+</html>

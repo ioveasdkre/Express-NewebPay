@@ -1,0 +1,9 @@
+Notify URL：後端直接接收
+Return URL：付款完成直接轉到這個網址
+
+建議值些檢視出錯狀況：
+  Notify 還沒驗證完
+  Return 就想拿資料庫結果(用戶體驗一致、廣告追蹤需求)
+
+直播共筆文件（下方包含範例檔案）：
+https://bejewled-air-4cb.notion.site/Node-ed62603947dd439b8174404ae8415b4a

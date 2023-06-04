@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>籃新金流練習</title>
+
+    <Script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></Script>
+  </head>
+  <body>
+    <div id="app">
+      <form @submit.prevent="createOrder">
+        <div><lable>Email：</lable><input type="email" v-model="order.Email" /></div>
+        <div><lable>Amt：</lable><input type="number" v-model.number="order.Amt" /></div>
+        <div><lable>ItemDesc：</lable><input type="text" v-model="order.ItemDesc" /></div>
+        <button type="submit">確認支付</button>
+      </form>
+    </div>
+    <script type="module">
+      import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.esm-browser.min.js';
+
+      const app = {
+        data() {
+          return {
+            order: {
+              Email: 'test@gmail.com',
+              Amt: 1000,
+              ItemDesc: '這是一個棒棒的商品',
+            },
+          };
+        },
+        methods: {
+          async createOrder() {
+            const url = '/api/home/createOrder';
+            const res = await axios.post(url, this.order);
+            console.log(res.data.data);
+            window.location.href = `/home/check?order=${res.data.data.TimeStamp}`;
+          },
+        },
+      };
+
+      createApp(app).mount('#app');
+    </script>
+  </body>
+</html>
