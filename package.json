@@ -5,6 +5,7 @@
     "dev": "npx nodemon",
     "start:dev": "npx cross-env ENV=dev nodemon",
     "start:production": "npx cross-env ENV=prod nodemon",
+    "build": "npx ts-node ./src/bin/www",
     "prepare": "husky install"
   },
   "nodemonConfig": {
